@@ -26,6 +26,7 @@ static int start_adv_cmd(void* handle, int argc, char* argv[]);
 static int stop_adv_cmd(void* handle, int argc, char* argv[]);
 static int set_adv_data_cmd(void* handle, int argc, char* argv[]);
 static int dump_adv_cmd(void* handle, int argc, char* argv[]);
+static int help_adv_cmd(void* handle, int argc, char* argv[]);
 
 static struct option adv_options[] = {
     { "adv_type", required_argument, 0, 't' },
@@ -70,6 +71,7 @@ static bt_command_t g_adv_tables[] = {
                                "\t  -h or --handle, advertising handle, bt_le_start_advertising return \n" },
     { "set_data", set_adv_data_cmd, 1, "set advertising data, not implemented" },
     { "dump", dump_adv_cmd, 0, "dump adv current state" },
+    { "help", help_adv_cmd, 1, "output help information" },
 };
 
 static uint8_t s_adv_data[] = { 0x02, 0x01, 0x08, 0x03, 0xFF, 0x8F, 0x03 }; /* flags: LE & BREDR, Manufacturer ID:0x038F */
@@ -393,6 +395,12 @@ static int set_adv_data_cmd(void* handle, int argc, char* argv[])
 
 static int dump_adv_cmd(void* handle, int argc, char* argv[])
 {
+    return CMD_OK;
+}
+
+static int help_adv_cmd(void* handle, int argc, char* argv[])
+{
+    usage();
     return CMD_OK;
 }
 
